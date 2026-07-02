@@ -186,3 +186,10 @@ select 'School Connect — Update v4 schema installed ✅' as status;
 -- Safe for fresh and existing databases. Fixes: could not find 'teacher' column of subjects.
 alter table if exists public.subjects add column if not exists teacher text;
 alter table if exists public.subjects add column if not exists teacher_id uuid references public.profiles(id) on delete set null;
+
+
+-- Role/page access map controlled from Admin Dashboard → Page Access Manager.
+alter table public.school_settings add column if not exists role_access jsonb;
+
+-- Page access manager write-permission map.
+alter table public.school_settings add column if not exists role_write jsonb;

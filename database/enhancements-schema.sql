@@ -327,3 +327,10 @@ alter table if exists public.subjects add column if not exists teacher_id uuid r
 
 alter table public.school_settings add column if not exists signature_url text default '';
 alter table public.school_settings add column if not exists principal_name text default '';
+
+
+-- Role/page access map controlled from Admin Dashboard → Page Access Manager.
+alter table public.school_settings add column if not exists role_access jsonb;
+
+-- Page access manager write-permission map.
+alter table public.school_settings add column if not exists role_write jsonb;

@@ -1056,3 +1056,10 @@ begin
   where r.cert_code is not null and r.cert_code<>'' and upper(r.cert_code)=upper(p_code);
 end $$;
 grant execute on function public.verify_certificate(text) to anon, authenticated;
+
+
+-- Role/page access map controlled from Admin Dashboard → Page Access Manager.
+alter table public.school_settings add column if not exists role_access jsonb;
+
+-- Page access manager write-permission map.
+alter table public.school_settings add column if not exists role_write jsonb;
